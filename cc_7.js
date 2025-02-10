@@ -45,3 +45,13 @@ function calculateShippingCost(weight, location, expedited = false) { // defines
 
 calculateShippingCost(10, "USA", true); // Expected output: "Shipping Cost: $20.00"
 calculateShippingCost(5, "Canada", false); // Expected output: "Shipping Cost: $13.50"
+
+// Task 5: Returning Values //
+
+function calculateLoanInterest(principal, rate, years) { // defines formula and variables
+    let interest = (principal * rate * years).toFixed(2); // defines equation for interest with 2 decimal places
+    return `Total Interest: $${interest}`; // returns total interest amount as template literal
+};
+ 
+console.log(calculateLoanInterest(1000, 0.05, 3)); // Expected result: "Total Interest: $150.00"
+console.log(calculateLoanInterest(5000, 0.07, 5)); // Expected result: "Total Interest: $1750.00"
