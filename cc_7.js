@@ -66,3 +66,17 @@ function filterHighValueTransactions(transactions, filterFunction) { // declares
 let filteredTransactions = filterHighValueTransactions(transactions, amount => amount > 1000); // defines filteredTransactions as amounts over $1000
 
 console.log(filteredTransactions); // Expected output: [1200, 3000, 2200]
+
+// Task 7: Closures //
+
+function createBudgetTracker() { // defines the function
+    let totalExpenses = 0; // defines totalExpenses and set initial expense to 0
+    return function(expense) {
+        totalExpenses -= expense; // adds each new expense to the totalExpenses to show a negative balance on budget
+        console.log(`Current Balance: $${totalExpenses}`); // displays current total balance as a template literal
+    };
+};
+
+let budget = createBudgetTracker(); // defines budget as createBudgetTracker
+budget(300); // Expected Output: "Current Balance: -$300"
+budget(200); // Expected Output: "Current Balance: -$500"
