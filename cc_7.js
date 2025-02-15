@@ -1,7 +1,7 @@
 // Task 1: Function Declaration //
 
 function calculateInvoice(subtotal, taxRate, discount){ // declares the function and its variables
-    let total = (subtotal + (subtotal * taxRate) - discount).toFixed(2); // declares what formula should be used, with use of .toFixed(2) to set answer to two decimal points
+    let total = (subtotal + (subtotal * taxRate) - discount).toFixed(2); // defines formula to 2 decimals
     return `Total Invoice: $${total}`; // Allows console.log to return amount from total formula
 };
 
@@ -11,7 +11,7 @@ console.log(calculateInvoice(500,0.1,20)); // Expected output: "Total Invoice: $
 // Task 2: Fucntion Expression //
 
 function calculateHourlyWage(salary, hoursPerWeek){ // declares function and its variables
-    let hourlyWage = (salary / (hoursPerWeek * 52)).toFixed(2); // declares formula to be used, with .toFixed(2) to set decimal point to 2 spots
+    let hourlyWage = (salary / (hoursPerWeek * 52)).toFixed(2); // defines formula to 2 decimals
     return `Hourly Wage: $${hourlyWage}`; // Returns the result from the hourly wage formula as template literal
 };
 
@@ -22,9 +22,9 @@ console.log(calculateHourlyWage(75000,35)); // Expected output: "Hourly Wage: $4
 
 const calculateLoyaltyDiscount = (amount, years) => { // defines the function and its variables
     let discount = 0;  // declares discount variable
-    if (years >= 5) discount = (amount * .85).toFixed(2); // If years are >=5, the final discounted price is a 15% discount (amount * .85)
-    else if (years >= 3) discount = (amount * .9).toFixed(2); // If years are >= 3, final discounted price is 10% discount (amount * .9)
-    else discount = (amount * .95).toFixed(2); // for all other years (less than 3 years), final discounted price is 5% discount (amount * .95)
+    if (years >= 5) discount = (amount * .85).toFixed(2); // If years are >=5, price has 15% discount (amount * .85)
+    else if (years >= 3) discount = (amount * .9).toFixed(2); // If years are >= 3, price has 10% discount (amount * .9)
+    else discount = (amount * .95).toFixed(2); // for all other years (<3), price has 5% discount (amount * .95)
     console.log(`Discounted Price: $${discount}`); // logs discounted price based off discount formula using template literal
 };
 
@@ -35,11 +35,9 @@ calculateLoyaltyDiscount(200, 2); // Expected output: "Discounted Price: $190.00
 
 function calculateShippingCost(weight, location, expedited = false) { // defines function and variables
     let shipping = 0; // declares the shipping cost variable
-    if (location === "USA") shipping = (weight*0.5)+5; // If location is USA and expedited is false, weight equals 0.5*weight plus $5
-    else if (location === "Canada") shipping = (weight*0.7)+10; // If location is Canada and expedited is false, weight equals 0.7*weight plus $10
-    if (expedited === true) { // adds additional condition that if the package is expedited
-        shipping += 10; // $10 are added to shipping cost
-      };  
+    if (location === "USA") shipping = (weight*0.5)+5; // If location = USA and expedited = false, weight = 0.5*weight plus $5
+    else if (location === "Canada") shipping = (weight*0.7)+10; // If location = Canada and expedited = false, weight = 0.7*weight plus $10
+    if (expedited === true) shipping += 10;  // adds $10 if expedited shipping
     console.log(`Shipping Cost: $${shipping.toFixed(2)}`); // logs shipping cost as template literal
 };
 
@@ -59,13 +57,8 @@ console.log(calculateLoanInterest(5000, 0.07, 5)); // Expected result: "Total In
 // Task 6: Higher-Order Functions //
 
 let transactions = [500, 1200, 3000, 800, 2200]; // Declare the array
-function filterHighValueTransactions(transactions, filterFunction) { // declares the function and its variables
-    return transactions.filter(filterFunction); // returns the filtered results from filterFunction
-};
-
-let filteredTransactions = filterHighValueTransactions(transactions, amount => amount > 1000); // defines filteredTransactions as amounts over $1000
-
-console.log(filteredTransactions); // Expected output: [1200, 3000, 2200]
+let filterLargeTransactions = transactions.filter(transactions => transactions > 1000); // Filter transactions >1000
+console.log(filterLargeTransactions); // Expected output: [1200, 3000, 2200]
 
 // Task 7: Closures //
 
@@ -84,11 +77,11 @@ budget(200); // Expected Output: "Current Balance: -$500"
 // Task 8: Recursion in JavaScript //
 
 function calculateGrowth(years, revenue) { // Declares function and variables
-    if (years > 10) {  // If the years are greater than 10
+    if (years >= 10) {  // Continues growth for 10 years
         return revenue; // Don't continue to grow revenue, just display the revenue amount
     };
 
-    return calculateGrowth(years + 1, revenue * 1.05);  // Recursive function where each year the new value will be 1.05 times that year's
+    return calculateGrowth(years + 1, revenue * 1.05);  // Each year the new value will be 1.05 times that year's
 };
 
 console.log(`Projected Revenue: $${calculateGrowth(8, 1000).toFixed(2)}`); // Expected output: "Projected Revenue: $1102.50"
